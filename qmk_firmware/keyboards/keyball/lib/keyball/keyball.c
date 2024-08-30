@@ -25,6 +25,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string.h>
 
+// ===JIS->USに変更===
+// 日本語配列のキーコード表
+#include "keymap_japanese.h"
+
+// JIS->USの変換表
+const uint16_t us2jis[][2] = {
+    {KC_LPRN, JP_LPRN},
+    {KC_RPRN, JP_RPRN},
+    {KC_AT,   JP_AT},
+    {KC_LBRC, JP_LBRC},
+    {KC_RBRC, JP_RBRC},
+    {KC_LCBR, JP_LCBR},
+    {KC_RCBR, JP_RCBR},
+    {KC_MINS, JP_MINS},
+    {KC_EQL,  JP_EQL},
+    {KC_BSLS, JP_BSLS},
+    {KC_SCLN, JP_SCLN},
+    {KC_QUOT, JP_QUOT},
+    {KC_GRV,  JP_GRV},
+    {KC_PLUS, JP_PLUS},
+    {KC_COLN, JP_COLN},
+    {KC_UNDS, JP_UNDS},
+    {KC_PIPE, JP_PIPE},
+    {KC_DQT,  JP_DQUO},
+    {KC_ASTR, JP_ASTR},
+    {KC_TILD, JP_TILD},
+    {KC_AMPR, JP_AMPR},
+    {KC_CIRC, JP_CIRC},
+};
+// ===================
+
 const uint8_t CPI_DEFAULT    = KEYBALL_CPI_DEFAULT / 100;
 const uint8_t CPI_MAX        = pmw3360_MAXCPI + 1;
 const uint8_t SCROLL_DIV_MAX = 7;
@@ -635,6 +666,42 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
 }
 #endif
 
+// JIS to US ===
+bool twpair_on_jis(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) return true;
+
+    uint16_t skeycode; // シフトビットを反映したキーコード
+    bool lshifted = keyboard_report->mods & MOD_BIT(KC_LSFT); // シフトキーの状態
+    bool rshifted = keyboard_report->mods & MOD_BIT(KC_RSFT);
+    bool shifted = lshifted | rshifted;
+
+    if (shifted) {
+        skeycode = QK_LSFT | keycode;
+    } else {
+        skeycode = keycode;
+    }
+
+    for (int i = 0; i < sizeof(us2jis) / sizeof(us2jis[0]); i++) {
+        if (us2jis[i][0] == skeycode) {
+            unregister_code(KC_LSFT);
+            unregister_code(KC_RSFT);
+            if ((us2jis[i][1] & QK_LSFT) == QK_LSFT || (us2jis[i][1] & QK_RSFT) == QK_RSFT) {
+                register_code(KC_LSFT);
+                tap_code(us2jis[i][1]);
+                unregister_code(KC_LSFT);
+            } else {
+                tap_code(us2jis[i][1]);
+            }
+        if (lshifted) register_code(KC_LSFT);
+        if (rshifted) register_code(KC_RSFT);
+        return false;
+        }
+    }
+
+    return true;
+}
+// ===================
+
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     // store last keycode, row, and col for OLED
     keyball.last_kc  = keycode;
@@ -652,7 +719,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-#ifndef MOUSEKEY_ENABLE
+#       ifndef MOUSEKEY_ENABLE
         // process KC_MS_BTN1~8 by myself
         // See process_action() in quantum/action.c for details.
         case KC_MS_BTN1 ... KC_MS_BTN8: {
@@ -661,7 +728,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             // to apply QK_MODS actions, allow to process others.
             return true;
         }
-#endif
+#       endif
 
         case SCRL_MO:
             keyball_set_scroll_mode(record->event.pressed);
@@ -676,22 +743,22 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             case KBC_RST:
                 keyball_set_cpi(0);
                 keyball_set_scroll_div(0);
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#               ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
                 set_auto_mouse_enable(false);
                 set_auto_mouse_timeout(AUTO_MOUSE_TIME);
-#endif
+#               endif
                 break;
             case KBC_SAVE: {
                 keyball_config_t c = {
                     .cpi   = keyball.cpi_value,
                     .sdiv  = keyball.scroll_div,
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#                   ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
                     .amle  = get_auto_mouse_enable(),
                     .amlto = (get_auto_mouse_timeout() / AML_TIMEOUT_QU) - 1,
-#endif
-#if KEYBALL_SCROLLSNAP_ENABLE == 2
+#                   endif
+#                   if KEYBALL_SCROLLSNAP_ENABLE == 2
                     .ssnap = keyball_get_scrollsnap_mode(),
-#endif
+#                   endif
                 };
                 eeconfig_update_kb(c.raw);
             } break;
@@ -719,7 +786,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 add_scroll_div(-1);
                 break;
 
-#if KEYBALL_SCROLLSNAP_ENABLE == 2
+#           if KEYBALL_SCROLLSNAP_ENABLE == 2
             case SSNP_HOR:
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
                 break;
@@ -729,9 +796,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             case SSNP_FRE:
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
                 break;
-#endif
+#           endif
 
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#           ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
             case AML_TO:
                 set_auto_mouse_enable(!get_auto_mouse_enable());
                 break;
@@ -747,10 +814,18 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     set_auto_mouse_timeout(MAX(v, AML_TIMEOUT_MIN));
                 }
                 break;
-#endif
+#           endif
 
             default:
+#           ifdef JIS2US_ENABLE
+                // JIS->USの記述
+                if (!twpair_on_jis(keycode, record)){
+                    return false;
+                }
                 return true;
+#           else
+                return true;
+#           endif
         }
         return false;
     }
@@ -779,280 +854,3 @@ uint8_t mod_config(uint8_t mod) {
 }
 
 #endif
-
-//////////////////////////////////////////////////////////////////////////////
-// JIS to US
-bool process_record_user_jtu(uint16_t keycode, keyrecord_t *record) {
-  static bool lshift = false;
-  static bool rshift = false;
-
-  switch (keycode) {
-    case JU_2:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LBRC);
-          unregister_code(KC_LBRC);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_2);
-          unregister_code(KC_2);
-        }
-      }
-      return false;
-    case JU_6:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_EQL);
-          unregister_code(KC_EQL);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_6);
-          unregister_code(KC_6);
-        }
-      }
-      return false;
-    case JU_7:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_6);
-          unregister_code(KC_6);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_7);
-          unregister_code(KC_7);
-        }
-      }
-      return false;
-    case JU_8:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_QUOT);
-          unregister_code(KC_QUOT);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_8);
-          unregister_code(KC_8);
-        }
-      }
-      return false;
-    case JU_9:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_8);
-          unregister_code(KC_8);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_9);
-          unregister_code(KC_9);
-        }
-      }
-      return false;
-    case JU_0:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_9);
-          unregister_code(KC_9);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_0);
-          unregister_code(KC_0);
-        }
-      }
-      return false;
-    case JU_MINS:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_INT1);
-          unregister_code(KC_INT1);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_MINS);
-          unregister_code(KC_MINS);
-        }
-      }
-      return false;
-    case JU_EQL:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_SCLN);
-          unregister_code(KC_SCLN);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_LSFT);
-          register_code(KC_MINS);
-          unregister_code(KC_MINS);
-          unregister_code(KC_LSFT);
-        }
-      }
-      return false;
-    case JU_LBRC:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_RBRC);
-          unregister_code(KC_RBRC);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_RBRC);
-          unregister_code(KC_RBRC);
-        }
-      }
-      return false;
-    case JU_RBRC:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_NUHS);
-          unregister_code(KC_NUHS);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_NUHS);
-          unregister_code(KC_NUHS);
-        }
-      }
-      return false;
-    case JU_BSLS:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_INT3);
-          unregister_code(KC_INT3);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_INT1);
-          unregister_code(KC_INT1);
-        }
-      }
-      return false;
-    case JU_SCLN:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_QUOT);
-          unregister_code(KC_QUOT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_SCLN);
-          unregister_code(KC_SCLN);
-        }
-      }
-      return false;
-    case JU_QUOT:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_2);
-          unregister_code(KC_2);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_LSFT);
-          register_code(KC_7);
-          unregister_code(KC_7);
-          unregister_code(KC_LSFT);
-        }
-      }
-      return false;
-    case JU_GRV:
-      if (record->event.pressed) {
-        lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-        rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-        if (lshift || rshift) {
-          if (lshift) unregister_code(KC_LSFT);
-          if (rshift) unregister_code(KC_RSFT);
-          register_code(KC_LSFT);
-          register_code(KC_EQL);
-          unregister_code(KC_EQL);
-          unregister_code(KC_LSFT);
-          if (lshift) register_code(KC_LSFT);
-          if (rshift) register_code(KC_RSFT);
-        } else {
-          register_code(KC_LSFT);
-          register_code(KC_LBRC);
-          unregister_code(KC_LBRC);
-          unregister_code(KC_LSFT);
-        }
-      }
-      return false;
-  }
-  return true;
-}

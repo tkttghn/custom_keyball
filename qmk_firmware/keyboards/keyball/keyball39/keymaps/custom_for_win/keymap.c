@@ -29,14 +29,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_universal(
     KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     LT(3,KC_A), KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_ENT  ,
-    LSFT_T(KC_Z), KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(JU_MINS),
+    LSFT_T(KC_Z), KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(KC_MINS),
     KC_LCTL  , KC_LALT  ,KC_LGUI  , LALT_T(KC_INT5),LT(1,KC_SPC),LT(6,KC_INT4),RSFT_T(KC_TAB),LT(2,KC_SPC),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_ESC
   ),
 
   [1] = LAYOUT_universal(
-    KC_1     , JU_2     , KC_3     , KC_4     , KC_5     ,                            JU_6     , JU_7     , JU_8     , JU_9     , JU_0     ,
-    JU_BSLS  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            JU_EQL   , KC_BTN1  , KC_BTN3  , KC_BTN2  , JU_SCLN  ,
-    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            JU_GRV   , JU_QUOT  , JU_LBRC  , JU_RBRC  , RSFT_T(KC_SLSH),
+    KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                            KC_6     , KC_7     , KC_8     , KC_9     , KC_0     ,
+    KC_BSLS  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_GRV   , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_SCLN  ,
+    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , KC_QUOT  , KC_EQL   , KC_LBRC  , RSFT_T(KC_SLSH),
     _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
   ),
 

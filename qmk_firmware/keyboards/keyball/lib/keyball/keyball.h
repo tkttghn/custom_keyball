@@ -119,24 +119,6 @@ enum keyball_keycodes {
     KEYBALL_SAFE_RANGE = QK_USER_0,
 };
 
-// OS設定がJISの場合にもUS配列同様に使えるキーマップを定義
-enum custom_keycodes {
-    JU_2 = QK_KB_15,
-    JU_6 = QK_KB_16,
-    JU_7 = QK_KB_17,
-    JU_8 = QK_KB_18,
-    JU_9 = QK_KB_19,
-    JU_0 = QK_KB_20,
-    JU_MINS = QK_KB_21, // !Shift同時押しと両立できない!
-    JU_EQL = QK_KB_22,
-    JU_LBRC = QK_KB_23,
-    JU_RBRC = QK_KB_24,
-    JU_BSLS = QK_KB_25,
-    JU_SCLN = QK_KB_26,
-    JU_QUOT = QK_KB_27,
-    JU_GRV = QK_KB_28
-};
-
 typedef union {
     uint32_t raw;
     struct {
