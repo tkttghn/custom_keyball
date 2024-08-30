@@ -7,5 +7,8 @@ OLED_ENABLE = yes
 # VIA(REMAP)の設定に必要な定義
 VIA_ENABLE = yes
 
+# System, Audio Control Keysの有効化
+EXTRAKEY_ENABLE = yes
+
 # share the grave key (` and ~) with Escape.
 # GRAVE_ESC_ENABLE = no
