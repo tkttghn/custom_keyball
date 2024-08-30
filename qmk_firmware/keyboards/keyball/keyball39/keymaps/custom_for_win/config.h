@@ -47,3 +47,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AUTO_MOUSE_DEFAULT_LAYER (5)
 // 元のレイヤーに戻るまでの時間(ms)
 #define AUTO_MOUSE_TIME (800)
+// スクロール反転
+#define KEYBALL_SCROLL_INV (1)

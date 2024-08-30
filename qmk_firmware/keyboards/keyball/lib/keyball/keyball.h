@@ -65,6 +65,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// disabling the magic key code. In that case, define this macro.
 //#define KEYBALL_KEEP_MAGIC_FUNCTIONS
 
+// スクロール反転
+#ifndef KEYBALL_SCROLL_INV
+#    define KEYBALL_SCROLL_INV 0
+#endif
+
 //////////////////////////////////////////////////////////////////////////////
 // Constants
 
