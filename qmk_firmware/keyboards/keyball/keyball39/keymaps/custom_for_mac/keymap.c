@@ -62,16 +62,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [5] = LAYOUT_universal(
-    XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,
+    XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , TO(5)    ,
     XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , KC_BTN1  , KC_BTN3  , KC_BTN2  , XXXXXXX  ,
-    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , KC_RSFT  ,
+    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , XXXXXXX  , SCRL_MO  , XXXXXXX  , KC_RSFT  ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
   ),
 
   [6] = LAYOUT_universal(
-    CPI_D100 , CPI_I100 , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , AML_TO  ,
+    CPI_D100 , CPI_I100 , SCRL_DVI , SCRL_DVD , KBC_SAVE ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , AML_TO  ,
     KC_VOLD  , KC_VOLU  , KC_MUTE  , LCAG(KC_RGHT), XXXXXXX  ,                        XXXXXXX  , XXXXXXX  , XXXXXXX  , LCAG(KC_L), XXXXXXX  ,
-    SCRL_DVI , SCRL_DVD  , XXXXXXX  , XXXXXXX  , LCAG(KC_LEFT) ,                      LCAG(KC_N), LCAG(KC_M), XXXXXXX  , XXXXXXX  , KBC_SAVE ,
+    KC_LSFT  , XXXXXXX , XXXXXXX  , XXXXXXX  , LCAG(KC_LEFT) ,                      LCAG(KC_N), LCAG(KC_M), XXXXXXX  , XXXXXXX  , KC_RSFT ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
   )
 };
