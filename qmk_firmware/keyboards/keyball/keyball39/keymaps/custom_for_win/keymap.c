@@ -64,14 +64,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [5] = LAYOUT_universal(
     AML_D50  , AML_I50  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , TO(5)    ,
     XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , KC_BTN1  , KC_BTN3  , KC_BTN2  , XXXXXXX  ,
-    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , XXXXXXX  , SCRL_MO  , XXXXXXX  , KC_RSFT  ,
+    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , SCRL_MO  , SCRL_MOV , SCRL_MOH , KC_RSFT  ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
   ),
 
   [6] = LAYOUT_universal(
     CPI_D100 , CPI_I100 , SCRL_DVI , SCRL_DVD , KBC_SAVE ,                            KC_BTN4  , KC_BTN5  , XXXXXXX  , XXXXXXX  , AML_TO  ,
     KC_VOLD  , KC_VOLU  , KC_MUTE  , LGUI(KC_RGHT), XXXXXXX  ,                        XXXXXXX  , XXXXXXX  , XXXXXXX  , LGUI(KC_TAB), XXXXXXX,
-    KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , LGUI(KC_LEFT) ,                       XXXXXXX  , LGUI(KC_UP), XXXXXXX, XXXXXXX  , KC_RSFT ,
+    KC_LSFT  , SSNP_FRE , SSNP_VRT , SSNP_HOR , LGUI(KC_LEFT) ,                       XXXXXXX  , LGUI(KC_UP), SCRL_MOV, SCRL_MOH  , KC_RSFT ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
   )
 };

@@ -43,9 +43,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Automatic Mouse Layer(AML)の有効化
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+
 // 切り替えるマウスレイヤー番号
 #define AUTO_MOUSE_DEFAULT_LAYER (5)
+
 // 元のレイヤーに戻るまでの時間(ms)
-#define AUTO_MOUSE_TIME (500)
+#define AUTO_MOUSE_TIME (700)
+
+// スクロールスナップモードを有効化
+#define KEYBALL_SCROLLSNAP_ENABLE (2)
+
 // スクロール反転
-#define KEYBALL_SCROLL_INV (1)
+#define KEYBALL_SCROLL_INV
