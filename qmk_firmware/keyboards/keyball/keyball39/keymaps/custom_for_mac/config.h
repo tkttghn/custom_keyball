@@ -46,4 +46,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 切り替えるマウスレイヤー番号
 #define AUTO_MOUSE_DEFAULT_LAYER (5)
 // 元のレイヤーに戻るまでの時間(ms)
-#define AUTO_MOUSE_TIME (800)
+#define AUTO_MOUSE_TIME (500)
