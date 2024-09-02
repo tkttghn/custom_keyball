@@ -55,3 +55,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // スクロール反転
 #define KEYBALL_SCROLL_INV
+
+// JIS->US設定の有効化(自作)
+#define JIS2US_ENABLE (1)
