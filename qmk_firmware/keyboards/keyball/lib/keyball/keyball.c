@@ -685,11 +685,11 @@ bool twpair_on_jis(uint16_t keycode, keyrecord_t *record) {
         if (us2jis[i][0] == skeycode) {
             unregister_code(KC_LSFT);
             unregister_code(KC_RSFT);
-            if ((us2jis[i][1] & QK_LSFT) == QK_LSFT || (us2jis[i][1] & QK_RSFT) == QK_RSFT) {
+            if ((us2jis[i][1] & QK_LSFT) == QK_LSFT || (us2jis[i][1] & QK_RSFT) == QK_RSFT) { // shiftが押されている場合
                 register_code(KC_LSFT);
                 tap_code(us2jis[i][1]);
                 unregister_code(KC_LSFT);
-            } else {
+            } else { // shiftなしの場合
                 tap_code(us2jis[i][1]);
             }
         if (lshifted) register_code(KC_LSFT);
@@ -798,6 +798,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 break;
 #           endif
 
+            // AML特殊キーの設定
 #           ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
             case AML_TO:
                 set_auto_mouse_enable(!get_auto_mouse_enable());
@@ -817,8 +818,19 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #           endif
 
             default:
+            // JIS->USの記述
 #           ifdef JIS2US_ENABLE
-                // JIS->USの記述
+                // '_'と'shift'のTap/HoldのJIS->US
+                switch (keycode) {
+                    case RSFT_T(KC_MINS):
+                        if (record->tap.count && record->event.pressed) {
+                            //tap_code16(KC_MINS); // Send KC_MINS on tap
+                            twpair_on_jis(KC_MINS, record);
+                            return false;        // Return false to ignore further processing of key
+                        }
+                        break;
+                }
+                // us2jisにあるキーのJIS->US
                 if (!twpair_on_jis(keycode, record)){
                     return false;
                 }
