@@ -53,8 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // スクロールスナップモードを有効化
 #define KEYBALL_SCROLLSNAP_ENABLE (2)
 
-// スクロール反転
-#define KEYBALL_SCROLL_INV
+// スクロール反転(1で有効)
+#define KEYBALL_SCROLL_INV (1)
 
-// JIS->US設定の有効化(自作)
+// JIS->US設定の有効化(1で有効)
 #define JIS2US_ENABLE (1)

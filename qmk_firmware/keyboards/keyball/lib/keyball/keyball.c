@@ -266,7 +266,7 @@ __attribute__((weak)) void keyball_on_apply_motion_to_mouse_scroll(keyball_motio
 #endif
 
 // スクロール反転
-#if KEYBALL_SCROLL_INV
+#if KEYBALL_SCROLL_INV == 1
     r->h = -r->h;
     r->v = -r->v;
 #endif
@@ -846,7 +846,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
             default:
             // JIS->USの記述
-#           ifdef JIS2US_ENABLE
+#           if JIS2US_ENABLE == 1
                 // '_'と'shift'のTap/HoldのJIS->US
                 switch (keycode) {
                     case RSFT_T(KC_MINS):
