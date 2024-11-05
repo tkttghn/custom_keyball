@@ -10,5 +10,8 @@ VIA_ENABLE = yes
 # System, Audio Control Keysの有効化
 EXTRAKEY_ENABLE = yes
 
+# tapdanceの有効化
+#TAP_DANCE_ENABLE = yes
+
 # share the grave key (` and ~) with Escape.
 # GRAVE_ESC_ENABLE = no

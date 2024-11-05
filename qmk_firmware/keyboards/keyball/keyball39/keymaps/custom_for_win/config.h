@@ -36,25 +36,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // 
-#define TAP_CODE_DELAY (5)
+#define TAP_CODE_DELAY 5
 
 //VIA(REMAP)で認識するレイヤー数を変更
-#define DYNAMIC_KEYMAP_LAYER_COUNT (7)
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
 
 // Automatic Mouse Layer(AML)の有効化
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 
 // 切り替えるマウスレイヤー番号
-#define AUTO_MOUSE_DEFAULT_LAYER (5)
+#define AUTO_MOUSE_DEFAULT_LAYER 6
 
 // 元のレイヤーに戻るまでの時間(ms)
-#define AUTO_MOUSE_TIME (700)
+#define AUTO_MOUSE_TIME 400
 
 // スクロールスナップモードを有効化
-#define KEYBALL_SCROLLSNAP_ENABLE (2)
+#define KEYBALL_SCROLLSNAP_ENABLE 2
 
 // スクロール反転(1で有効)
-#define KEYBALL_SCROLL_INV (1)
+#define KEYBALL_SCROLL_INV 1
 
 // JIS->US設定の有効化(1で有効)
-#define JIS2US_ENABLE (1)
+#define JIS2US_ENABLE 1
