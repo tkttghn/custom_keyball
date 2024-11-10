@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Layer 1 (Symbols and numbers, mouse click layer)
     [1] = LAYOUT_universal(
         KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                            KC_6     , KC_7     , KC_8     , KC_9     , KC_0     ,
-        KC_BSLS  , LSFT_T(KC_EQL), LSFT_T(KC_8), KC_DOT, LSFT_T(KC_2),                    KC_EQL   , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_SCLN  ,
+        KC_BSLS  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_EQL   , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_SCLN  ,
         KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_GRV   , KC_QUOT  , KC_LBRC  , KC_RBRC  , RSFT_T(KC_SLSH),
         _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
     ),
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Layer 3 (Emacs keybind layer)
     [3] = LAYOUT_universal(
         XXXXXXX  , XXXXXXX  , LCTL(KC_E), XXXXXXX , LCTL(KC_T),                           LCTL(KC_Y), XXXXXXX , XXXXXXX  , LCTL(KC_O), KC_UP   ,
-        XXXXXXX  ,  LCTL(KC_A), KC_DEL , KC_RGHT  , XXXXXXX  ,                            KC_BSPC  , LCTL(KC_J),LCTL(KC_K),LCTL(KC_L), XXXXXXX ,
+        XXXXXXX  ,  LCTL(KC_A), KC_DEL , KC_RGHT  , XXXXXXX  ,                            KC_BSPC  , LCTL(KC_J),LCTL(KC_K),LCTL(KC_L), LCTL(KC_SCLN) ,
         KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , KC_LEFT  ,                            KC_DOWN  , KC_ENT   , XXXXXXX  , XXXXXXX  , KC_RSFT  ,
         _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______
     ),
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Layer 6 (Auto mouse layer)
     [6] = LAYOUT_universal(
-        TO(6)    , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,
+        TO(6)    , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN5  , SSNP_FRE , SSNP_VRT , SSNP_HOR , XXXXXXX  ,
         XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , XXXXXXX  ,
         KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , SCRL_MO  , SCRL_MOV , SCRL_MOH , KC_RSFT  ,
         _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______

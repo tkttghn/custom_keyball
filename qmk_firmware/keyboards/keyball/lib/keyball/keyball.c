@@ -37,6 +37,8 @@ static const char BL = '\xB0'; // Blank indicator character
 static const char LFSTR_ON[] PROGMEM = "\xB2\xB3";
 static const char LFSTR_OFF[] PROGMEM = "\xB4\xB5";
 
+keyball_scrollsnap_mode_t scrollsnap_mode_record = KEYBALL_SCROLLSNAP_MODE_FREE ; // スクロールスナップ方向を記録する変数
+
 keyball_t keyball = {
     .this_have_ball = false,
     .that_enable    = false,
@@ -671,14 +673,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_INT1);
                     unregister_code(KC_INT1);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_MINS);
                     unregister_code(KC_MINS);
@@ -728,14 +724,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_6);
                     unregister_code(KC_6);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_7);
                     unregister_code(KC_7);
@@ -748,14 +738,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_QUOT);
                     unregister_code(KC_QUOT);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_8);
                     unregister_code(KC_8);
@@ -768,14 +752,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_8);
                     unregister_code(KC_8);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_9);
                     unregister_code(KC_9);
@@ -788,14 +766,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_9);
                     unregister_code(KC_9);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_0);
                     unregister_code(KC_0);
@@ -808,14 +780,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_INT1);
                     unregister_code(KC_INT1);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_MINS);
                     unregister_code(KC_MINS);
@@ -828,14 +794,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_SCLN);
                     unregister_code(KC_SCLN);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_LSFT);
                     register_code(KC_MINS);
@@ -850,14 +810,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_RBRC);
                     unregister_code(KC_RBRC);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_RBRC);
                     unregister_code(KC_RBRC);
@@ -870,14 +824,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_NUHS);
                     unregister_code(KC_NUHS);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_NUHS);
                     unregister_code(KC_NUHS);
@@ -890,14 +838,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_INT3);
                     unregister_code(KC_INT3);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_INT1);
                     unregister_code(KC_INT1);
@@ -928,14 +870,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_2);
                     unregister_code(KC_2);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_LSFT);
                     register_code(KC_7);
@@ -950,14 +886,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
                 rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
                 if (lshift || rshift) {
-                    if (lshift) unregister_code(KC_LSFT);
-                    if (rshift) unregister_code(KC_RSFT);
-                    register_code(KC_LSFT);
                     register_code(KC_EQL);
                     unregister_code(KC_EQL);
-                    unregister_code(KC_LSFT);
-                    if (lshift) register_code(KC_LSFT);
-                    if (rshift) register_code(KC_RSFT);
                 } else {
                     register_code(KC_LSFT);
                     register_code(KC_LBRC);
@@ -967,6 +897,17 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 #       endif
+
+        case END_DEL:
+            if (record->event.pressed) {
+                register_code(KC_LSFT);
+                register_code(KC_END);
+                unregister_code(KC_END);
+                unregister_code(KC_LSFT);
+                register_code(KC_DEL);
+                unregister_code(KC_DEL);
+            }
+            return false;
 
 #       ifndef MOUSEKEY_ENABLE
         // process KC_MS_BTN1~8 by myself
@@ -981,8 +922,11 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
         case SCRL_MO:
             keyball_set_scroll_mode(record->event.pressed);
-            // process_auto_mouse may use this in future, if changed order of
-            // processes.
+            if (record->event.pressed) {
+                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
+            } else {
+                keyball_set_scrollsnap_mode(scrollsnap_mode_record);
+            }
             return true;
 
         case SCRL_MOV:
@@ -990,7 +934,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
             } else {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
+                keyball_set_scrollsnap_mode(scrollsnap_mode_record);
             }
             return true;
 
@@ -999,7 +943,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
             } else {
-                keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
+                keyball_set_scrollsnap_mode(scrollsnap_mode_record);
             }
             return true;
     }
@@ -1056,12 +1000,15 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #           if KEYBALL_SCROLLSNAP_ENABLE == 2
             case SSNP_HOR:
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
+                scrollsnap_mode_record = KEYBALL_SCROLLSNAP_MODE_HORIZONTAL;
                 break;
             case SSNP_VRT:
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
+                scrollsnap_mode_record = KEYBALL_SCROLLSNAP_MODE_VERTICAL;
                 break;
             case SSNP_FRE:
                 keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_FREE);
+                scrollsnap_mode_record = KEYBALL_SCROLLSNAP_MODE_FREE;
                 break;
 #           endif
 
