@@ -57,4 +57,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KEYBALL_SCROLL_INV 1
 
 // JIS->US設定の有効化(1で有効)
-#define JIS2US_ENABLE 1
+#define JIS2US_ENABLE 0
