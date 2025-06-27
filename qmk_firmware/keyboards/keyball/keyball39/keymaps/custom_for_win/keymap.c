@@ -25,27 +25,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 番号が各レイヤ
 // キーコード詳細は -> https://docs.qmk.fm/keycodes
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // Layer 0 (O24 keybind layer)
+    // Layer 0 (qwerty layer)
     [0] = LAYOUT_universal(
+        KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
+        LT(4,KC_A), KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  ,
+        LSFT_T(KC_Z), KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(KC_SLSH),
+        KC_LCTL  , KC_LALT  ,KC_LGUI  , LALT_T(KC_F13),LT(2,KC_SPC),LT(7,KC_F14),RSFT_T(KC_TAB),LT(3,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_ESC
+    ),
+    
+    // Layer 1 (O24 keybind layer)
+    [1] = LAYOUT_universal(
         KC_Q     , KC_L     , KC_U     , KC_COMM  , KC_DOT   ,                            KC_F     , KC_W     , KC_R     , KC_Y     , KC_P     ,
         LT(4,KC_E), KC_I    , KC_A     , KC_O     , KC_MINS  ,                            KC_K     , KC_T     , KC_N     , KC_S     , KC_H     ,
         LSFT_T(KC_Z), KC_X  , KC_C     , KC_V     , KC_SCLN  ,                            KC_G     , KC_D     , KC_M     , KC_J     , RSFT_T(KC_B),
         KC_LCTL  , KC_LALT  ,KC_LGUI   , LALT_T(KC_INT5),LT(2,KC_SPC),LT(7,KC_INT4),      RSFT_T(KC_TAB), LT(3,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI,KC_ESC 
     ),
 
-    // Layer 1 (Text input layer)
-    [1] = LAYOUT_universal(
-        KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-        LT(4,KC_A), KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_ENT  ,
-        LSFT_T(KC_Z), KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(KC_MINS),
-        KC_LCTL  , KC_LALT  ,KC_LGUI  , LALT_T(KC_INT5),LT(2,KC_SPC),LT(7,KC_INT4),RSFT_T(KC_TAB),LT(3,KC_SPC),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_ESC
-    ),
-
     // Layer 2 (Symbols and numbers, mouse click layer)
     [2] = LAYOUT_universal(
         KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                            KC_6     , KC_7     , KC_8     , KC_9     , KC_0     ,
-        KC_BSLS  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_EQL   , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_SCLN  ,
-        KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_GRV   , KC_QUOT  , KC_LBRC  , KC_RBRC  , RSFT_T(KC_SLSH),
+        KC_BSLS  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_EQL   , KC_BTN1  , KC_BTN3  , KC_BTN2  , KC_B  ,
+        KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_GRV   , KC_QUOT  , KC_LBRC  , KC_RBRC  , RSFT_T(KC_MINS),
         _______  , _______  , _______  , _______  , _______  , _______  ,                 _______  , LT(3,KC_ENT)  , _______  , _______  , _______  , _______
     ),
 
