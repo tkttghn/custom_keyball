@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Layer 6 (Auto mouse layer)
     [6] = LAYOUT_universal(
-        TG(6)    , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN5  , SSNP_FRE , SSNP_VRT , SSNP_HOR , XXXXXXX  ,
+        TG(6)    , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN5  , XXXXXXX , XXXXXXX  , XXXXXXX  , XXXXXXX  ,
         XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , XXXXXXX  ,
         KC_LSFT  , XXXXXXX  , XXXXXXX  , XXXXXXX  , XXXXXXX  ,                            XXXXXXX  , SCRL_MO  , SCRL_MOV , SCRL_MOH , KC_RSFT  ,
         _______  , _______  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , _______  , _______

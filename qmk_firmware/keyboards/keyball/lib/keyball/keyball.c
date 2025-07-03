@@ -1029,6 +1029,13 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                     set_auto_mouse_timeout(MAX(v, AML_TIMEOUT_MIN));
                 }
                 break;
+            // AMLオンオフの制御ボタン追加
+            case AML_ON:
+                set_auto_mouse_enable(true);
+                break;
+            case AML_OFF:
+                set_auto_mouse_enable(false);
+                break;
 #           endif
 
             default:

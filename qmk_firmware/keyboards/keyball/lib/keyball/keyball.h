@@ -121,6 +121,8 @@ enum keyball_keycodes {
     AML_TO   = QK_KB_10, // Toggle automatic mouse layer
     AML_I50  = QK_KB_11, // Increment automatic mouse layer timeout
     AML_D50  = QK_KB_12, // Decrement automatic mouse layer timeout
+    AML_ON   = QK_KB_19,
+    AML_OFF  = QK_KB_20,
 
     // Emacs Keybaind keycodes.
     END_DEL  = QK_KB_18,
